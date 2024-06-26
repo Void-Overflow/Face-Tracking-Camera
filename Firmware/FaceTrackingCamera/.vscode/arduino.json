@@ -1,0 +1,5 @@
+{
+    "port": "COM3",
+    "board": "arduino:mbed_rp2040:pico",
+    "sketch": "FaceTrackingCamera.ino"
+}
