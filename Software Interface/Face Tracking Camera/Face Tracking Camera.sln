@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Face Tracking Camera", "Face Tracking Camera.vcxproj", "{AFC2FB3B-BDE9-4508-B150-FA225E9C6EAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFC2FB3B-BDE9-4508-B150-FA225E9C6EAF}.Debug|x64.ActiveCfg = Debug|x64
+		{AFC2FB3B-BDE9-4508-B150-FA225E9C6EAF}.Debug|x64.Build.0 = Debug|x64
+		{AFC2FB3B-BDE9-4508-B150-FA225E9C6EAF}.Debug|x86.ActiveCfg = Debug|Win32
+		{AFC2FB3B-BDE9-4508-B150-FA225E9C6EAF}.Debug|x86.Build.0 = Debug|Win32
+		{AFC2FB3B-BDE9-4508-B150-FA225E9C6EAF}.Release|x64.ActiveCfg = Release|x64
+		{AFC2FB3B-BDE9-4508-B150-FA225E9C6EAF}.Release|x64.Build.0 = Release|x64
+		{AFC2FB3B-BDE9-4508-B150-FA225E9C6EAF}.Release|x86.ActiveCfg = Release|Win32
+		{AFC2FB3B-BDE9-4508-B150-FA225E9C6EAF}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D2CF796-9954-4EE3-ABE1-46DFC4C3216E}
+	EndGlobalSection
+EndGlobal
