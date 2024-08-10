@@ -1,12 +1,11 @@
 # Face-Tracking-Camera
 An RP2040 based mechanical facial tracker with a C++ interface utilizing OpenCV to physically track faces detected in the user's webcam using stepper and servo motors.
 
-
-THIS PROJECT IS CURRENTLY UNDER DEVELOPMENT. ALL ASPECTS HAVE NOT BEEN DEVELOPED YET, AND MUCH OF THE DESCRIPTION WILL NOT WORK AS OF NOW, NOR WILL IT LIKELY ACTUALLY EXIST IN THE CONTENTS OF THIS REPOSITORY.
-
 Description: 
 
 This project uses the Rasperry Pi Pico microcontroller to run Arduino code which uses UART to communicate with my C++ program. It receives the determined coordinates of a detected face in the webcam with the center of the camera as the origin. It then maps the values from those coordinates to a stepper motor to move it horizontally and a servo to vertically move the camera. The webcam should be mounted on top of the 3d printed base. A slip ring should be used to prevent the wires above the stepper from being tangled. The C++ interface was written in Visual Studio, and it uses OpenCV to detect and track faces from a pretrained haarcascade file. It additionally uses the Windows.h library to communicate with the detected RPi. I have designed my own libraries, SerialCOM and FaceDetect, which respectively open, establish, and interact with a device at a certain serial port, as well as use OpenCV to detect and receive coordinates of a face in the webcam. I addionally created my own function, autoConnect, in the   SerialCOM library which searches all serial ports on the windows computer from COM0-COM30 for a connection message to verify it is the desired device. This message should be sent at all times by the receiver, in this case the RPi Pico.                       
+
+The design of its box consists of a bearing placed on top of the mount in the center with a 3 wire slip ring placed inside of it to assure that it's wires don't get tangled while moving. The wires then go up the tube and connect to the servo motor at the top, in which you can use glue to secure it. Use a method to fasten your webcam to the front of the servo. Personally I found zipties to be effective.
 
 How to Run: 
 

@@ -2,9 +2,10 @@
 #include <Stepper.h>
 
 #define servoPin 9
-Stepper stepper = Stepper(200, 2, 4, 3, 5); // Pins entered in sequence IN1-IN3-IN2-IN4 for proper step sequence
+Stepper stepper = Stepper(32, 2, 4, 3, 5); // Pins entered in sequence IN1-IN3-IN2-IN4 for proper step sequence
 
 int NoReceptionElapsed = 0;
+int reconnectionAttemptElapsed = 0;
 bool isRunning = false;
 
 int x, y;
@@ -21,21 +22,26 @@ void writeServo(int angle)
   digitalWrite(servoPin, HIGH);
   delayMicroseconds(pulseWidth);
   digitalWrite(servoPin, LOW);
-  delay(20 - pulseWidth / 1000); // Ensure a 20ms period
+  delay(25 - pulseWidth / 1000); // Ensure a 20ms period
 }
 
 void idle()
 {
-  stepper.step(2);
   if (servoPos >= 180)
     servoDir = true;
   if (servoPos <= 0)
     servoDir = false;
 
   if (servoDir == false)
+  {
     servoPos++;
+    stepper.step(2);
+  }
   else
+  {
     servoPos--;
+    stepper.step(-2);
+  }
 
   writeServo(servoPos);
 }
@@ -46,7 +52,7 @@ void setup()
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(servoPin, OUTPUT);
 
-  stepper.setSpeed(200);
+  stepper.setSpeed(500);
 
   while (!Serial) // wait for serial port to connect
   {
@@ -76,26 +82,28 @@ void loop()
     isRunning = false;
     digitalWrite(LED_BUILTIN, LOW);
 
-    delay(500);
-
     idle();
-    Serial.println("Connected to Face Tracking Camera Receiver!"); // message sent for c++ program to identify RPi
+    if (millis() - reconnectionAttemptElapsed >= 500)
+    {
+      Serial.println("Connected to Face Tracking Camera Receiver!"); // message sent for c++ program to identify RPi
+      reconnectionAttemptElapsed = millis();
+    }
   }
   else if (millis() - NoReceptionElapsed < 2500) // if it has been connected in the previous 2.5 seconds
     digitalWrite(LED_BUILTIN, HIGH);
 
   if (isRunning == true)
   {
-    if (x > 50 || x < -50)
-      stepper.step((x > 50) ? -2 : 2);
+    if (x > 40 || x < -40)
+      stepper.step((x > 50) ? 2 : -2);
 
-    if (y > 50)
+    if (y > 60)
     {
       servoPos++;
       if (servoPos > 180)
         servoPos = 180;
     }
-    else if (y < 50)
+    else if (y < -60)
     {
       servoPos--;
       if (servoPos < 0)

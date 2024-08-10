@@ -128,12 +128,12 @@ bool SerialCOM::autoConnect(const char* connectionMsg)
 const char* SerialCOM::read()
 {
 	if (ReadFile(_hSerial, _readBuffer, sizeof(_readBuffer) - 1, &_bytesRead, NULL)) {
-		if (_bytesRead > 0) 
+		if (_bytesRead > 0)
 			_readBuffer[_bytesRead] = '\0'; // Null-terminate the string
 	}
 	else {
 		std::cerr << "Error reading from serial port: " << GetLastError() << std::endl;
-		return nullptr;
+		return "";
 	}
 	return _readBuffer;
 }

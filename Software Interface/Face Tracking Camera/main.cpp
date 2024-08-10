@@ -14,8 +14,13 @@ void deviceCOM() {
 	};
 
 	while (isRunningSerialThread) {
-		device.write(std::string(std::to_string(xCoord) + "|" + std::to_string(yCoord) + '\n').c_str());
-		std::cout << device.read();
+		const char* read = device.read();
+		if (read == "")
+			device.autoConnect("Connected to Face Tracking Camera Receiver!");
+		else {
+			device.write(std::string(std::to_string(xCoord) + "|" + std::to_string(yCoord) + '\n').c_str());
+			std::cout << read << '\n';
+		}
 	}
 	device.close();
 }
